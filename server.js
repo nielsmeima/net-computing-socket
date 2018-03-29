@@ -4,7 +4,7 @@ const net     = require('net');
 const request = require('request-promise-native');
 
 const restIp    = '127.0.0.1';
-const restPort  = '1337';
+const restPort  = '3000';
 
 try
 {
@@ -41,7 +41,7 @@ try
   });
   
   
-  server.listen(8124, '192.168.178.16', () => {
+  server.listen(8124, '192.168.1.19', () => {
     console.log('server bound');
   });
 }
@@ -61,8 +61,6 @@ const updateLocation = async (locationUpdate) => {
       json: true,
       url
     }
-
-    console.log(options)
 
     let response = request(options);
   }
