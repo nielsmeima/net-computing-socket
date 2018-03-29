@@ -6,6 +6,7 @@ const request = require('request-promise-native');
 const restIp    = '127.0.0.1';
 const restPort  = '3000';
 
+// ===== Listening Socket =====
 try
 {
   const server = net.createServer((socket) => {
@@ -41,7 +42,7 @@ try
   });
   
   
-  server.listen(8124, '192.168.1.19', () => {
+  server.listen(8124, '192.168.178.16', () => {
     console.log('server bound');
   });
 }
@@ -50,19 +51,24 @@ catch (err)
   console.log(err);
 }
 
+// ===== Update Location To Queue ======
+const broker = require('./send');
+
 const updateLocation = async (locationUpdate) => {
   try 
   {
-    let url = 'http://' + restIp + ':' + restPort + '/api/user';
+    // let url = 'http://' + restIp + ':' + restPort + '/api/user';
 
-    let options = {
-      method: 'patch',
-      body: locationUpdate,
-      json: true,
-      url
-    }
+    // let options = {
+    //   method: 'patch',
+    //   body: locationUpdate,
+    //   json: true,
+    //   url
+    // }
 
-    let response = request(options);
+    // let response = request(options);
+    broker.sendMessage('user-location', locationUpdate);
+
   }
   catch (err)
   {
