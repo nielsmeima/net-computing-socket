@@ -42,7 +42,7 @@ const sendMessage = async (queue, message) => {
   {
     let channel = await createChannel();
 
-    channel.assertQueue(queue, {durable: false});
+    channel.assertQueue(queue, {durable: true});
     channel.sendToQueue(queue, Buffer.from(JSON.stringify(message)));
   }
   catch (err)
