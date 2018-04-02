@@ -3,7 +3,7 @@
 const net     = require('net');
 const request = require('request-promise-native');
 
-const restIp    = '127.0.0.1';
+const restIp    = '0.0.0.0';
 const restPort  = '3000';
 
 // ===== Listening Socket =====
@@ -42,7 +42,7 @@ try
   });
   
   
-  server.listen(8124, '192.168.1.19', () => {
+  server.listen(8124, '0.0.0.0', () => {
     console.log('server bound');
   });
 }
